@@ -22,14 +22,9 @@ function solveSudoku() {
 
   // checking possibleNumbers
 
-  update();
+  updatePosibleNumbers();
 
-
-
-
-  
-
-  // checking if posible number is in only one or two in two square
+  // checking if posible number is in only one in area
 
   fields.forEach((field) => {
     field.forEach((area) => {
@@ -51,7 +46,7 @@ function solveSudoku() {
               square.dataset.number = posibleNumber;
               square.dataset.posibleNumbers = [];
               square.value = posibleNumber;
-              removePosibleNumber(square);
+              removePosibleNumberHandler(square);
               break;
             }
           }
@@ -80,12 +75,11 @@ function solveSudoku() {
             }
           });
 
-          if (row.every((rowID) => rowID === row[0]) && row.length >1) {
+          if (row.every((rowID) => rowID === row[0]) && row.length > 1) {
             removeFromArea(rows[row[0] - 1], cell, posibleNumber, "box");
             break;
-            
           }
-           if (col.every((colID) => colID === col[0]) && col.length >1) {
+          if (col.every((colID) => colID === col[0]) && col.length > 1) {
             removeFromArea(columns[col[0] - 1], cell, posibleNumber, "box");
             break;
           }
@@ -109,8 +103,7 @@ function solveSudoku() {
             }
           });
 
-
-          if (box.every((boxID) => boxID === box[0]) && box.length >1) {
+          if (box.every((boxID) => boxID === box[0]) && box.length > 1) {
             removeFromArea(boxs[box[0] - 1], cell, posibleNumber, "row");
             break;
           }
@@ -135,10 +128,9 @@ function solveSudoku() {
             }
           });
 
-          if (box.every((boxID) => boxID === box[0]) && box.length >1 ) {
+          if (box.every((boxID) => boxID === box[0]) && box.length > 1) {
             removeFromArea(boxs[box[0] - 1], cell, posibleNumber, "column");
             break;
-
           }
         }
       }
@@ -162,7 +154,7 @@ function addingNumberHandler(value) {
     value.dataset.number = value.value % 10;
     return value.value % 10;
   } else if (+value.value === 0) {
-    value.dataset.number = null;
+    value.dataset.number = "";
     value.dataset.posibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return null;
   } else {
@@ -173,9 +165,7 @@ function addingNumberHandler(value) {
 
 function checkIfContainsNumbers() {
   squares.forEach((square) => {
-    if (square.dataset.number === undefined) {
-      return;
-    } else if (square.dataset.number === "null") {
+    if (square.dataset.number === undefined || square.dataset.number === "") {
       return;
     } else {
       square.dataset.posibleNumbers = [];
@@ -183,7 +173,7 @@ function checkIfContainsNumbers() {
   });
 }
 
-function removePosibleNumber(square) {
+function removePosibleNumberHandler(square) {
   squares.forEach((sqr) => {
     if (
       sqr.dataset.posibleNumbers !== [] &&
@@ -192,7 +182,7 @@ function removePosibleNumber(square) {
         sqr.dataset.row === square.dataset.row ||
         sqr.dataset.column === square.dataset.column)
     ) {
-      removingNumber(sqr, square.dataset.number);
+      removePosibleNumber(sqr, square.dataset.number);
     }
   });
 }
@@ -201,19 +191,18 @@ function removeFromArea(type, cell, numberToRemove, areaType) {
   type.forEach((sqr) => {
     if (areaType === "box") {
       if (sqr.dataset.box !== cell.dataset.box)
-        removingNumber(sqr, numberToRemove);
+        removePosibleNumber(sqr, numberToRemove);
     } else if (areaType === "column") {
       if (sqr.dataset.column !== cell.dataset.column)
-        removingNumber(sqr, numberToRemove);
+        removePosibleNumber(sqr, numberToRemove);
     } else if (areaType === "row") {
-      if (sqr.dataset.row !== cell.dataset.row) 
-        removingNumber(sqr, numberToRemove);
-      
+      if (sqr.dataset.row !== cell.dataset.row)
+        removePosibleNumber(sqr, numberToRemove);
     }
   });
 }
 
-function removingNumber(square, numberToRemove) {
+function removePosibleNumber(square, numberToRemove) {
   if (square.dataset.posibleNumbers !== []) {
     if (square.dataset.posibleNumbers.includes(numberToRemove)) {
       let newPosibleNumbers = Array.from(
@@ -225,7 +214,7 @@ function removingNumber(square, numberToRemove) {
         square.dataset.number = newPosibleNumbers[0];
         square.dataset.posibleNumbers = [];
         square.value = newPosibleNumbers[0];
-        update();
+        updatePosibleNumbers();
       } else {
         square.dataset.posibleNumbers = newPosibleNumbers;
       }
@@ -233,19 +222,22 @@ function removingNumber(square, numberToRemove) {
   }
 }
 
-
-function update(){
+function updatePosibleNumbers() {
   fields.forEach((field) => {
     field.forEach((area) => {
       takenNumbers = [];
       area.forEach((square) => {
-        if (square.dataset.number && square.dataset.number !== null) {
+        if (
+          square.dataset.number &&
+          square.dataset.number !== null &&
+          !takenNumbers.includes(square.dataset.number)
+        ) {
           takenNumbers.push(square.dataset.number);
         }
       });
       takenNumbers.forEach((takenNumber) => {
         area.forEach((square) => {
-          removingNumber(square, takenNumber);
+          removePosibleNumber(square, takenNumber);
         });
       });
     });
