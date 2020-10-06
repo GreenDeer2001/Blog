@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-center">
+        <h2>Sudoku</h2>
+        <button class="start">Solve Sudoku</button>
+    </nav>
+</div>
+<div class="sudoku-center">
+    <div class="grid">
+        <!-- box1 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=1 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=1 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=1 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=2 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=2 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=2 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=3 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=3 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=1 data-row=3 data-column=3 class="square-input"></input>
+        </div>
+        <!-- box2 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=1 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=1 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=1 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=2 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=2 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=2 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=3 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=3 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=2 data-row=3 data-column=6 class="square-input"></input>
+        </div>
+        <!-- box3 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=1 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=1 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=1 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=2 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=2 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=2 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=3 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=3 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=3 data-row=3 data-column=9 class="square-input"></input>
+        </div>
+        <!-- box4 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=4 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=4 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=4 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=5 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=5 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=5 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=6 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=6 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=4 data-row=6 data-column=3 class="square-input"></input>
+        </div>
+        <!-- box5 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=4 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=4 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=4 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=5 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=5 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=5 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=6 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=6 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=5 data-row=6 data-column=6 class="square-input"></input>
+        </div>
+        <!-- box6 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=4 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=4 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=4 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=5 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=5 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=5 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=6 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=6 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=6 data-row=6 data-column=9 class="square-input"></input>
+        </div>
+        <!-- box7 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=7 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=7 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=7 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=8 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=8 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=8 data-column=3 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=9 data-column=1 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=9 data-column=2 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=7 data-row=9 data-column=3 class="square-input"></input>
+        </div>
+        <!-- box8 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=7 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=7 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=7 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=8 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=8 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=8 data-column=6 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=9 data-column=4 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=9 data-column=5 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=8 data-row=9 data-column=6 class="square-input"></input>
+        </div>
+        <!-- box9 -->
+        <div class="box">
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=7 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=7 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=7 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=8 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=8 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=8 data-column=9 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=9 data-column=7 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=9 data-column=8 class="square-input"></input>
+            <input type="number" min=1 max=9 step=1 data-box=9 data-row=9 data-column=9 class="square-input"></input>
+        </div>
+    </div>
+</div>
+</body>
+</html>
