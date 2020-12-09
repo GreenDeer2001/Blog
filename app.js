@@ -55,7 +55,7 @@ function solveSudoku() {
     });
   });
 
-  // additional checkig if all posibleNumber in box is in the same row or col
+  // additional checking if possibleNumber is in only one col or row
 
   boxs.forEach((box) => {
     box.forEach((cell) => {
@@ -87,6 +87,9 @@ function solveSudoku() {
       }
     });
   });
+
+  // checking if possibleNumber from row or col is in only one box
+
   rows.forEach((row) => {
     row.forEach((cell) => {
       if (cell.dataset.posibleNumbers !== []) {
@@ -136,6 +139,63 @@ function solveSudoku() {
       }
     });
   });
+
+  // two numbers in two cell
+  rows.forEach((row) => {
+    row.forEach((cell) => {
+      if (cell.dataset.posibleNumbers !== []) {
+        let count = 0;
+        let matchingCellRef;
+        for (let rowCell of row) {
+          if (
+            cell !== rowCell &&
+            cell.dataset.posibleNumbers === rowCell.dataset.posibleNumbers &&
+            cell.dataset.posibleNumbers.replace(/,/gi, "").length === 2
+          ){
+            matchingCellRef= rowCell
+            count++;
+          } 
+        }
+        if(count === 1){
+          const possibleNumbers = Array.from(cell.dataset.posibleNumbers.split(","))
+          for(let possibleNumber of possibleNumbers){
+            removeFromAreaWithoutTwo(row,cell, matchingCellRef, possibleNumber)
+          }
+        }
+      }
+    });
+  });
+
+
+  columns.forEach((col) => {
+    col.forEach((cell) => {
+      if (cell.dataset.posibleNumbers !== []) {
+        let count = 0;
+        let matchingCellRef;
+        for (let colCell of col) {
+          if (
+            cell !== colCell &&
+            cell.dataset.posibleNumbers === colCell.dataset.posibleNumbers &&
+            cell.dataset.posibleNumbers.replace(/,/gi, "").length === 2
+          ){
+            matchingCellRef= colCell
+            count++;
+          } 
+        }
+        if(count === 1){
+          const possibleNumbers = Array.from(cell.dataset.posibleNumbers.split(","))
+          for(let possibleNumber of possibleNumbers){
+            removeFromAreaWithoutTwo(col,cell, matchingCellRef, possibleNumber)
+          }
+        }
+      }
+    });
+  });
+
+
+
+
+
 }
 
 start.addEventListener("click", solveSudoku);
@@ -200,6 +260,14 @@ function removeFromArea(type, cell, numberToRemove, areaType) {
         removePosibleNumber(sqr, numberToRemove);
     }
   });
+}
+
+function removeFromAreaWithoutTwo(type,cell1, cell2, numberToRemove){
+  type.forEach(t=>{
+    if(t !== cell1 && t!== cell2){
+      removePosibleNumber(t, numberToRemove)
+    }
+  })
 }
 
 function removePosibleNumber(square, numberToRemove) {
